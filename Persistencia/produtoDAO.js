@@ -1,4 +1,4 @@
-import Produto from '../modelo/produto.js';
+import Produto from '../Modelo/produto.js';
 import conectar from './conexao.js';
 
 export default class ProdutoDAO {
