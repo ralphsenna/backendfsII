@@ -11,11 +11,12 @@ export default class ProdutoCtrl {
             const precoVenda = dados.precoVenda;
             const dataValidade = dados.dataValidade;
             const qtdEstoque = dados.qtdEstoque;
+            const categoria = dados.categoria
 
             if (descricao && precoCusto > 0 && precoVenda > 0 && dataValidade
-                && qtdEstoque >= 0) {
+                && qtdEstoque >= 0 && categoria) {
                 const produto = new Produto(0, descricao, precoCusto,
-                    precoVenda, dataValidade, qtdEstoque
+                    precoVenda, dataValidade, qtdEstoque, categoria
                 );
                 //resolver a promise
                 produto.gravar().then(() => {
@@ -25,12 +26,12 @@ export default class ProdutoCtrl {
                         "mensagem": "Produto incluído com sucesso!"
                     });
                 })
-                    .catch((erro) => {
-                        resposta.status(500).json({
-                            "status": false,
-                            "mensagem": "Erro ao registrar o produto:" + erro.message
-                        });
+                .catch((erro) => {
+                    resposta.status(500).json({
+                        "status": false,
+                        "mensagem": "Erro ao registrar o produto:" + erro.message
                     });
+                });
             }
             else {
                 resposta.status(400).json({
@@ -57,8 +58,10 @@ export default class ProdutoCtrl {
             const precoVenda = dados.precoVenda;
             const dataValidade = dados.dataValidade;
             const qtdEstoque = dados.qtdEstoque;
+            const categoria = dados.categoria;
+
             if (codigo && descricao && precoCusto > 0 && precoVenda > 0 && dataValidade
-                && qtdEstoque >= 0) {
+                && qtdEstoque >= 0 && categoria) {
                 const produto = new Produto(codigo, descricao, precoCusto,
                     precoVenda, dataValidade, qtdEstoque);
                 //resolver a promise
@@ -68,12 +71,12 @@ export default class ProdutoCtrl {
                         "mensagem": "Produto atualizado com sucesso!"
                     });
                 })
-                    .catch((erro) => {
-                        resposta.status(500).json({
-                            "status": false,
-                            "mensagem": "Erro ao atualizar o produto:" + erro.message
-                        });
+                .catch((erro) => {
+                    resposta.status(500).json({
+                        "status": false,
+                        "mensagem": "Erro ao atualizar o produto:" + erro.message
                     });
+                });
             }
             else {
                 resposta.status(400).json({
@@ -104,12 +107,12 @@ export default class ProdutoCtrl {
                         "mensagem": "Produto excluído com sucesso!"
                     });
                 })
-                    .catch((erro) => {
-                        resposta.status(500).json({
-                            "status": false,
-                            "mensagem": "Erro ao excluir o produto:" + erro.message
-                        });
+                .catch((erro) => {
+                    resposta.status(500).json({
+                        "status": false,
+                        "mensagem": "Erro ao excluir o produto:" + erro.message
                     });
+                });
             }
             else {
                 resposta.status(400).json({
@@ -144,14 +147,14 @@ export default class ProdutoCtrl {
                         listaProdutos
                     });
             })
-                .catch((erro) => {
-                    resposta.json(
-                        {
-                            status: false,
-                            mensagem: "Não foi possível obter os produtos: " + erro.message
-                        }
-                    );
-                });
+            .catch((erro) => {
+                resposta.json(
+                    {
+                        status: false,
+                        mensagem: "Não foi possível obter os produtos: " + erro.message
+                    }
+                );
+            });
         }
         else {
             resposta.status(400).json({
