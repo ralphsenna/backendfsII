@@ -63,7 +63,7 @@ export default class Produto{
     }
 
     get qtdEstoque(){
-        return this.#dataValidade;
+        return this.#qtdEstoque;
     }
 
     set qtdEstoque(novaQtd){
