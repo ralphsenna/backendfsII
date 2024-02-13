@@ -7,7 +7,7 @@ export default class ProdutoDAO {
     async gravar(produto) {
         if (produto instanceof Produto) {
             const sql = `INSERT INTO produto(prod_descricao, prod_precoCusto,
-                prod_precoVenda, prod_dataValidade, prod_qtdEstoque, cact_codigo)
+                prod_precoVenda, prod_dataValidade, prod_qtdEstoque, cat_codigo)
                 VALUES(?,?,?,?,?,?)`;
             const parametros = [produto.descricao, produto.precoCusto, produto.precoVenda,
             produto.dataValidade, produto.qtdEstoque, produto.categoria.codigo];
